@@ -61,7 +61,7 @@ def detectMetal(GPIOsensor,point):
 async def wss(companyID,point):
     uri = "wss://qng5sm4lz4.execute-api.ap-southeast-1.amazonaws.com/prod"
     async with websockets.connect(uri) as websocket:
-        event = {"action": "sendPrivate","companyID": companyID,"amountScore": point}
+        event = {"action": "sendPublic","companyID": companyID,"amountScore": point}
         await websocket.send(json.dumps(event))
 
 
