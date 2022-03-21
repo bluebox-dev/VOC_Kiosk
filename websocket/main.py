@@ -52,16 +52,16 @@ def detectMetal(GPIOsensor,point):
     state = GPIO.input(GPIOsensor)
     if state == 0:
       print("Metal Detected")
-      asyncio.run(wss("orderIDReference",point))
+      asyncio.run(wss("COMPANY_V2VkIE1hciAwOSAyMDIyIDExOjE1OjUzIEdNVCswMDAwIChDb29yZGluYXRlZCBVbml2ZXJzYWwgVGltZSk6MTJMbXQ=",point))
       # camera()
     else :
       print("Metal Not Detected")
 
 # Websocket
-async def wss(orderIDReference,point):
-    uri = "wss://iqy8xudwxl.execute-api.ap-southeast-1.amazonaws.com/unitTest"
+async def wss(companyID,point):
+    uri = "wss://qng5sm4lz4.execute-api.ap-southeast-1.amazonaws.com/prod"
     async with websockets.connect(uri) as websocket:
-        event = {"action": "sendPrivate","companyID": orderIDReference,"amountScore": point}
+        event = {"action": "sendPrivate","companyID": companyID,"amountScore": point}
         await websocket.send(json.dumps(event))
 
 
